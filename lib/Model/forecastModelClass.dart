@@ -9,61 +9,55 @@
 // String forecastDatasToJson(forecastDatas data) => json.encode(data.toJson());
 
 class forecastDatas {
-  
-    int? message;
-    int? cnt;
-     int? id;
-    String? name;
-    String? country;
-    int? population;
-    int? timezone;
-    int? sunrise;
-    int? sunset;
-    double? temp;
-    double? feelsLike;
-    double? tempMin;
-    double? tempMax;
-    int? pressure;
-    int? seaLevel;
-    int? grndLevel;
-    int? humidity;
-    double? tempKf;
-    double? speed;
-    double? the3H;
-  
-    
-    String? description;
-    String? icon;
-     int? all;
-     DateTime ?dtTxt;
-   
+  int? message;
+  int? cnt;
+  int? id;
+  String? name;
+  String? country;
+  int? population;
+  int? timezone;
+  int? sunrise;
+  int? sunset;
+  double? temp;
+  double? feelsLike;
+  double? tempMin;
+  double? tempMax;
+  int? pressure;
+  int? seaLevel;
+  int? grndLevel;
+  int? humidity;
+  double? tempKf;
+  double? speed;
+  double? the3H;
+  double? temb0;
 
-    forecastDatas({
-       
-        required this.message,
-        required this.cnt,
-         required this.id,
-        required this.name,
-        required this.country,
-        required this.population,
-        required this.timezone,
-        required this.sunrise,
-        required this.sunset,
-                required this.speed,
-                 required this.description,
-        required this.icon,
-required this.the3H,
-required this.all,
-required this.dtTxt,
- 
-        
-       
-    });
+  String? description;
+  String? icon;
+  int? all;
+  DateTime? dtTxt;
 
-   forecastDatas.fromJson(Map<String, dynamic> json){
-       
-    }
+  forecastDatas({
+    this.temb0,
+    required this.message,
+    required this.cnt,
+    required this.id,
+    required this.name,
+    required this.country,
+    required this.population,
+    required this.timezone,
+    required this.sunrise,
+    required this.sunset,
+    required this.speed,
+    required this.description,
+    required this.icon,
+    required this.the3H,
+    required this.all,
+    required this.dtTxt,
+  });
 
+  forecastDatas.fromJson(Map<String, dynamic> json) {
+    temb0 = json["list"][0]["main"]["temp"];
+  }
 }
 
 // class City {

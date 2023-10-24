@@ -31,7 +31,7 @@ class Locationss extends ChangeNotifier{
   // }
 
 //Datas?weather;
-Future<Datas> fetchDatas(context) async {
+Future<dynamic> fetchDatas() async {
   
 
   
@@ -42,6 +42,7 @@ Future<Datas> fetchDatas(context) async {
   print("888888888$location");
   if (response.statusCode == 200) {
     print("connected");
+    print(response.body);
     Vibration.vibrate(duration: 500);
     notifyListeners();
      //weather= Datas.fromJson(jsonDecode(response.body));
@@ -57,17 +58,18 @@ Future<Datas> fetchDatas(context) async {
 }
 
 
-Future<forecastDatas> forecast(context) async {
-  
+Future<dynamic> forecast() async {
+  print('called forecast');
 
   
   final response = await http.get(
-      Uri.parse("https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=$lat&lon=$lon&appid=5d89423b6d701f45ff34c365d14d3b87&units=metric"));
+      Uri.parse("https://api.openweathermap.org/data/2.5/forecast?q=malappuram&appid=5d89423b6d701f45ff34c365d14d3b87&units=metric"));
              // "https://api.openweathermap.org/data/2.5/weather?q=$location&appid=5d89423b6d701f45ff34c365d14d3b87&units=metric"));
   notifyListeners();
   print("888888888$location");
   if (response.statusCode == 200) {
     print("connected");
+    print(response.body);
     Vibration.vibrate(duration: 500);
     notifyListeners();
      //weather= Datas.fromJson(jsonDecode(response.body));
@@ -81,4 +83,7 @@ Future<forecastDatas> forecast(context) async {
   }
   
 }
+
 }
+
+

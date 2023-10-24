@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/Model/FetchdataFromNet.dart';
 import 'package:weather/Model/ModelClassOfWeather.dart';
+import 'package:weather/Model/forecastModelClass.dart';
 import 'package:weather/view/Properties/Containers.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,7 +20,7 @@ class HomePage extends StatelessWidget {
    
     return
      FutureBuilder(
-        future: pr.fetchDatas(context),
+        future: datas(),
         builder: (context, snapshot) {
          // if (snapshot.connectionState == ConnectionState.waiting) {
 
@@ -30,11 +31,21 @@ class HomePage extends StatelessWidget {
              return Scaffold(
               resizeToAvoidBottomInset: false,
              backgroundColor: Theme.of(context).colorScheme.background,
-              body: place(context, snapshot),
+              body: place(context),
             
               
             );
         //  }
         });
+ 
   }
+  Future<void>datas()async{
+      datassss=await Locationss().fetchDatas();
+      forecastdata=await Locationss().forecast();
+
+  // await Locationss(). forecast();
+  // await Locationss(). fetchDatas();
 }
+}
+Datas? datassss;
+forecastDatas? forecastdata;

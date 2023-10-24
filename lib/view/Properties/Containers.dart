@@ -18,7 +18,7 @@ DateTime now = DateTime.now();
 String formattedDate =
     "${DateFormat('E').format(now)}-${DateFormat('MMM').format(now)}-${DateFormat('y').format(now)}";
 
-Widget place(BuildContext context, AsyncSnapshot<Datas> snapshot) {
+Widget place(BuildContext context) {
 
 
    Future<void>refresh(){
@@ -38,7 +38,7 @@ Widget place(BuildContext context, AsyncSnapshot<Datas> snapshot) {
               onTap: () {
                 provid.search(false);
               },
-              child: provid.pos ? City(snapshot,context) : SearchBars(context)
+              child: provid.pos ? City(context) : SearchBars(context)
              
               ),
         ),
@@ -54,11 +54,11 @@ Widget place(BuildContext context, AsyncSnapshot<Datas> snapshot) {
           ),
         ),
         box(0.05, 0, context),
-        tempratureContainer(context, snapshot),
+        tempratureContainer(context),
         // box(0.01, 0, context),
         
         box(0.09, 0, context),
-        items(context, snapshot),
+        items(context),
         box(0.12, 0, context),
         naigationBar(context),
       ],
@@ -67,8 +67,9 @@ Widget place(BuildContext context, AsyncSnapshot<Datas> snapshot) {
 }
 
 Widget tempratureContainer(
-    BuildContext context, AsyncSnapshot<Datas> snapshot) {
+    BuildContext context, ) {
   return Container(
+    
     decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
         
@@ -105,10 +106,10 @@ Widget tempratureContainer(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              snapshot.data!=null?
+              datassss!=null?
               Text.rich(TextSpan(children: [
                 TextSpan(
-                  text: snapshot.data?.temp.toString(),
+                  text: datassss?.temp.toString(),
                   style: TextStyle(
                     color: Theme.of(context).textTheme.labelLarge!.color,
                     fontSize: 40,
@@ -132,7 +133,7 @@ Widget tempratureContainer(
               //   'Assets/cloud (1).png',
               //   height: 50,
               // )
-              WeatherIcons(snapshot.data?.description)
+              WeatherIcons(datassss?.description)
             ],
           ),
         ),
@@ -143,7 +144,7 @@ Widget tempratureContainer(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Real feel: ${snapshot.data?.feelsLike.toString()??0}°c',
+                'Real feel: ${datassss?.feelsLike.toString()??0}°c',
                 style: TextStyle(
                   color: Theme.of(context).textTheme.labelLarge!.color,
                   fontSize: 12,
@@ -151,7 +152,7 @@ Widget tempratureContainer(
                 ),
               ),
               Text(
-                snapshot.data?.description ?? 'loading...',
+                datassss?.description ?? 'loading...',
                 style: TextStyle(
                   color: Theme.of(context).textTheme.labelLarge!.color,
                   fontSize: 16,
@@ -166,7 +167,7 @@ Widget tempratureContainer(
   );
 }
 
-Widget items(BuildContext context, AsyncSnapshot<Datas> snapshot) {
+Widget items(BuildContext context, ) {
   return SizedBox(
     width: MediaQuery.of(context).size.width * 0.75,
     height: MediaQuery.of(context).size.height * 0.23,
@@ -197,17 +198,19 @@ Widget items(BuildContext context, AsyncSnapshot<Datas> snapshot) {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             //mainAxisSize: MainAxisSize.min,
             children: [
-              itemsTextData('${snapshot.data?.visibility??0}',context),
+              itemsTextData('${datassss?.visibility??0}',context),
               box(0.01, 0, context),
-              itemsTextData('${snapshot.data?.humidity.toString()??0} %',context),
+              itemsTextData('${datassss?.humidity.toString()??0} %',context),
               box(0.01, 0, context),
-              itemsTextData('${snapshot.data?.speed?.round()??0} mph',context),
+              itemsTextData('${datassss?.speed?.round()??0} mph',context),
               box(0.01, 0, context),
-              itemsTextData('${snapshot.data?.tempMin.toString()??0} °c',context),
+              itemsTextData('${datassss?.tempMin.toString()??0} °c',context),
               box(0.01, 0, context),
-              itemsTextData('${snapshot.data?.tempMax.toString()??0} °c',context),
+              itemsTextData('${datassss?.tempMax.toString()??0} °c',context),
               box(0.01, 0, context),
-              itemsTextData('${snapshot.data?.pressure.toString()??0} pa',context),
+              // itemsTextData('${datassss?.pressure.toString()??0} pa',context),
+              //  itemsTextData('${datassss?.pressure.toString()??0} pa',context),
+              itemsTextData("${forecastdata?.temb0}", context)
             ],
             
           )
@@ -303,9 +306,9 @@ Widget LoadingScreen(BuildContext context) {
   );
 }
 
-Widget City(AsyncSnapshot<Datas> snapshot,BuildContext context) {
+Widget City(BuildContext context) {
   return Text(
-    '${snapshot.data?.name ?? 'loading...'} | ${snapshot.data?.country ?? 'loading...'}',
+    '${datassss?.name ?? 'loading...'} | ${datassss?.country ?? 'loading...'}',
     style: TextStyle(
       color: Theme.of(context).textTheme.labelLarge!.color,
       fontSize: 15,
