@@ -1,4 +1,4 @@
-import 'package:weather/Model/ModelClassOfWeather.dart';
+import 'package:weather/Model/forecastModelClass.dart';
 
 String ?current;
 String? locality;
@@ -8,6 +8,11 @@ String? locality;
  double ?lon;
  double ? laat;
  double? loon;
+forecastDatas? forecastdata;
 
 
 
+
+
+
+ 

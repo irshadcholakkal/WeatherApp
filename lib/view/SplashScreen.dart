@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather/ViewModel/Location.dart';
+import 'package:weather/Model/Location.dart';
 import 'package:weather/view/Pages/Home_Page.dart';
 import 'package:weather/view/Properties/Containers.dart';
 
@@ -14,6 +14,8 @@ class SplashScreen extends StatelessWidget {
     Provider.of<LocPermissionProvider>(context, listen: false)
         .getCurrentLocation()
         .then((value) {
+        
+          
       Future.delayed(Duration(milliseconds: 0), () {
         Navigator.pushReplacement(
           context,
@@ -21,6 +23,8 @@ class SplashScreen extends StatelessWidget {
         );
       });
     });
+    
+
 
     return LoadingScreen(context);// or your splash screen widget
   }

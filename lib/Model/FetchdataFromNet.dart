@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:vibration/vibration.dart';
 import 'package:weather/Model/ModelClassOfWeather.dart';
+import 'package:weather/Model/SizedBoxes.dart';
 import 'package:weather/Model/Variables.dart';
 import 'package:weather/Model/forecastModelClass.dart';
 
@@ -15,10 +16,10 @@ import 'package:weather/Model/forecastModelClass.dart';
 
 class Locationss extends ChangeNotifier{
 
-  void   setLocation( locate,locationss) {
+  void  setLocation( locate,locationss) async{
     lat = locate;
     lon= locationss;
-
+   
     print("---$location");
     
      notifyListeners();
@@ -31,7 +32,7 @@ class Locationss extends ChangeNotifier{
   // }
 
 //Datas?weather;
-Future<dynamic> fetchDatas() async {
+Future<dynamic> fetchDatas(BuildContext context) async {
   
 
   
@@ -45,14 +46,18 @@ Future<dynamic> fetchDatas() async {
     print(response.body);
     Vibration.vibrate(duration: 500);
     notifyListeners();
+    
      //weather= Datas.fromJson(jsonDecode(response.body));
     return Datas.fromJson(jsonDecode(response.body));
 
     
   } else {
+  
     print("failed");
     Vibration.vibrate(amplitude: 10);
-    throw Exception('Failed to load Datas');
+      return noti("NO location Found",context);
+    
+   // throw Exception('Failed to load Datas');
   }
   
 }
@@ -63,12 +68,12 @@ Future<dynamic> forecast() async {
 
   
   final response = await http.get(
-      Uri.parse("https://api.openweathermap.org/data/2.5/forecast?q=malappuram&appid=5d89423b6d701f45ff34c365d14d3b87&units=metric"));
+      Uri.parse("https://api.openweathermap.org/data/2.5/forecast?lat=$lat&lon=$lon&appid=5d89423b6d701f45ff34c365d14d3b87&units=metric"));
              // "https://api.openweathermap.org/data/2.5/weather?q=$location&appid=5d89423b6d701f45ff34c365d14d3b87&units=metric"));
   notifyListeners();
   print("888888888$location");
   if (response.statusCode == 200) {
-    print("connected");
+    print("connectedforecast====================================");
     print(response.body);
     Vibration.vibrate(duration: 500);
     notifyListeners();

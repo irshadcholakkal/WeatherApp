@@ -4,15 +4,15 @@ class Datas {
   String? description;
   String? main;
   String ?country;
-  int? humidity;
-  int? pressure;
-  int? visibility;
+  num? humidity;
+  num? pressure;
+  num? visibility;
   num? speed;
-  double? temp;
-  double? feelsLike;
-  double? tempMin;
-  double? tempMax;
-  int ?timezone;
+  num? temp;
+  num? feelsLike;
+  num? tempMin;
+  num? tempMax;
+  num ?timezone;
   
 
   Datas({

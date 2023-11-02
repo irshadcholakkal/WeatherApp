@@ -11,15 +11,22 @@ ThemeData LightTheme=ThemeData(
    // shadow: Colors.grey.withOpacity(0.08),
     secondary: Colors.black,
     
+   
+    
 
     
     
+   ),
+   dialogTheme: DialogTheme(
+    backgroundColor: Colors.black,
+
    ),
    textTheme: TextTheme(
     bodyLarge: TextStyle(color: Colors.black),
     bodyMedium: TextStyle(color:  Color(0xFF7F7F7F),),//for values name
     bodySmall: TextStyle(color:  Color(0xFF404B5A),)  ,//for values
     labelLarge: TextStyle(color: Color(0xFF414B5A)),//for temperathure
+    displaySmall: TextStyle(color: Color.fromARGB(255, 255, 255, 255))// flutter toast
   
    ),
 
@@ -60,10 +67,14 @@ ThemeData DarkTheme=ThemeData(
     background: Colors.black,
     primary: Colors.black,
    // shadow: Colors.grey.withOpacity(0.08),
-    secondary: Colors.black,
+    secondary: Colors.white,
     
 
     
+    
+   ),
+    dialogTheme: DialogTheme(
+    backgroundColor: Colors.white,
     
    ),
    textTheme: TextTheme(
@@ -71,6 +82,8 @@ ThemeData DarkTheme=ThemeData(
     bodyMedium: TextStyle(color:  Color.fromARGB(255, 181, 179, 179),),//for values name
     bodySmall: TextStyle(color:  Color.fromARGB(255, 220, 227, 234),)  ,//for values
     labelLarge: TextStyle(color: Color.fromARGB(255, 221, 222, 224)),//for temperathure
+        displaySmall: TextStyle(color: Color.fromARGB(255, 0, 0, 0))//flutter tost
+
   
    ),
 

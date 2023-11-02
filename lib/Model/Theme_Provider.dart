@@ -7,10 +7,11 @@ class ThemeProvider extends ChangeNotifier {
   ThemeData themeData = LightTheme;
 
   ThemeData get currenttheme => themeData;
+  
 
    void setTheme(ThemeData newtheme) {
     themeData = newtheme;
-    //notifyListeners();
+  //  notifyListeners();
   }
 
   void setThemeBasedOnTime(BuildContext context) {
@@ -22,8 +23,8 @@ class ThemeProvider extends ChangeNotifier {
     } else {
       setTheme(DarkTheme);
     }
-   // notifyListeners();
+    // notifyListeners();
   }
 
  
-}
+} 

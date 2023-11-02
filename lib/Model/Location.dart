@@ -3,8 +3,8 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 import 'package:weather/Model/FetchdataFromNet.dart';
+import 'package:weather/Model/SizedBoxes.dart';
 import 'package:weather/Model/Variables.dart';
-import 'package:weather/ViewModel/Errormessages.dart';
 
 class LocPermissionProvider extends ChangeNotifier {
   Position? latLonposition;
@@ -14,9 +14,8 @@ class LocPermissionProvider extends ChangeNotifier {
   Future<void> getCurrentLocation() async {
     latLonposition = await _getCurrentLatLonPosition();
 
-     Locationss()
-        .setLocation(latLonposition!.latitude, latLonposition!.longitude);
-
+      Locationss().setLocation(latLonposition!.latitude, latLonposition!.longitude);
+    
     // await _getAddressFromLatLon(latLonposition!);
     notifyListeners();
   }
@@ -36,27 +35,9 @@ class LocPermissionProvider extends ChangeNotifier {
     return await Geolocator.getCurrentPosition();
   }
 
-  // Future<void> _getAddressFromLatLon(Position position) async {
-  //   await placemarkFromCoordinates(position.latitude, position.longitude)
-  //       .then((placemarks) {
-  //     decodeData = placemarks[0];
-  //     if (decodeData?.locality != null) {
-  //       locality = decodeData?.locality;
-  //        print('Localitys: $locality');
-  //            Locationss().setLocation(locality);
-
-  //      } else {
-  //       print('Locality not available');
-  //     }
-
-  //   }).catchError((e) {
-  //     debugPrint(e);
-  //   });
-  //   notifyListeners();
-  // }
-
+ 
   Future<void> getadress(place, BuildContext context) async {
-    final pr = Provider.of<Locationss>(context, listen: false);
+    final pr = Provider.of<Locationss>(context,listen: false);
 
     await locationFromAddress(place).then((locations) {
       if (locations.isNotEmpty) {
@@ -70,10 +51,31 @@ class LocPermissionProvider extends ChangeNotifier {
         
       }
     }).catchError((e) {
+    
+       noti("failed",context);
+    });
+    notifyListeners();
+  }
+
+   Future<void> getAddressFromLatLon(Position position) async {
+    await placemarkFromCoordinates(position.latitude, position.longitude)
+        .then((placemarks) {
+      decodeData = placemarks[0];
+      if (decodeData?.locality != null) {
+        locality = decodeData?.locality;
+         print('=============================================================================================Localitys: $locality');
+            //  Locationss().setLocation(locality);
+
+       } else {
+        print('Locality not available');
+      }
+
+    }).catchError((e) {
       debugPrint(e);
     });
     notifyListeners();
   }
+
 
  
 }

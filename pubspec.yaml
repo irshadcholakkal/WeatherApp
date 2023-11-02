@@ -7,15 +7,23 @@ environment:
   sdk: '>=3.1.2 <4.0.0'
 
 dependencies:
+  build_runner: ^2.4.6
   flutter:
     sdk: flutter
   flutter_typeahead: ^4.8.0
+  fluttertoast: ^8.2.2
   geocoding: ^2.1.1
   geolocator: ^10.1.0
+  google_maps_flutter: ^2.5.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
   http: ^1.1.0
+  input_history_text_field: ^0.2.0
   intl: ^0.18.1
   location: ^5.0.3
   lottie: ^2.6.0
+  marquee: ^2.2.3
+  path_provider: ^2.1.1
   provider: ^6.0.5
   vibration: ^1.8.3
 
@@ -23,6 +31,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  hive_generator: ^2.0.1
 
 flutter:
   uses-material-design: true
